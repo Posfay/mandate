@@ -1,0 +1,92 @@
+// World actors: every nation the simulation tracks for diplomacy.
+// Leaders reflect office-holders as of mid-2026; where the office was in flux, only the title is shown.
+// The game world diverges from that point and foreign elections can change them.
+
+const A = (id, num, iso2, name, leader, ltitle, regime, align, blocs, gdp, pop, capital, culture) => ({
+  id, num, iso2, name, leader, ltitle, regime, align, blocs, gdp, pop, capital, culture,
+});
+
+// regime: dem | hybrid | auto       align: west | east | nonaligned
+export const ACTORS = [
+  A('USA', '840', 'us', 'United States', 'Donald Trump', 'President', 'dem', 'west', ['NATO', 'G7', 'G20'], 30300, 342, [-77.04, 38.9], 'anglo'),
+  A('CAN', '124', 'ca', 'Canada', 'Mark Carney', 'Prime Minister', 'dem', 'west', ['NATO', 'G7', 'G20'], 2250, 41.5, [-75.7, 45.42], 'anglo'),
+  A('MEX', '484', 'mx', 'Mexico', 'Claudia Sheinbaum', 'President', 'dem', 'nonaligned', ['G20'], 1850, 132, [-99.13, 19.43], 'hispanic'),
+  A('BRA', '076', 'br', 'Brazil', 'Luiz Inácio Lula da Silva', 'President', 'dem', 'nonaligned', ['G20', 'BRICS'], 2300, 213, [-47.88, -15.79], 'lusophone'),
+  A('ARG', '032', 'ar', 'Argentina', 'Javier Milei', 'President', 'dem', 'west', ['G20'], 650, 46, [-58.38, -34.6], 'hispanic'),
+  A('CHL', '152', 'cl', 'Chile', 'José Antonio Kast', 'President', 'dem', 'west', [], 340, 19.8, [-70.65, -33.45], 'hispanic'),
+  A('COL', '170', 'co', 'Colombia', null, 'President', 'dem', 'nonaligned', [], 420, 53, [-74.07, 4.71], 'hispanic'),
+  A('VEN', '862', 've', 'Venezuela', null, 'President', 'auto', 'east', [], 100, 28, [-66.9, 10.48], 'hispanic'),
+  A('PER', '604', 'pe', 'Peru', null, 'President', 'hybrid', 'nonaligned', [], 290, 34, [-77.04, -12.05], 'hispanic'),
+  A('GBR', '826', 'gb', 'United Kingdom', 'Keir Starmer', 'Prime Minister', 'dem', 'west', ['NATO', 'G7', 'G20'], 3900, 69.5, [-0.12, 51.5], 'anglo'),
+  A('IRL', '372', 'ie', 'Ireland', 'Micheál Martin', 'Taoiseach', 'dem', 'west', ['EU'], 600, 5.4, [-6.26, 53.35], 'anglo'),
+  A('FRA', '250', 'fr', 'France', 'Emmanuel Macron', 'President', 'dem', 'west', ['EU', 'NATO', 'G7', 'G20'], 3300, 68.6, [2.35, 48.86], 'french'),
+  A('DEU', '276', 'de', 'Germany', 'Friedrich Merz', 'Chancellor', 'dem', 'west', ['EU', 'NATO', 'G7', 'G20'], 4900, 83.5, [13.4, 52.52], 'german'),
+  A('ITA', '380', 'it', 'Italy', 'Giorgia Meloni', 'Prime Minister', 'dem', 'west', ['EU', 'NATO', 'G7', 'G20'], 2500, 58.9, [12.5, 41.9], 'italian'),
+  A('ESP', '724', 'es', 'Spain', 'Pedro Sánchez', 'Prime Minister', 'dem', 'west', ['EU', 'NATO', 'G20'], 1900, 49, [-3.7, 40.42], 'hispanic'),
+  A('PRT', '620', 'pt', 'Portugal', 'Luís Montenegro', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 310, 10.6, [-9.14, 38.72], 'lusophone'),
+  A('NLD', '528', 'nl', 'Netherlands', null, 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 1300, 18.1, [4.9, 52.37], 'dutch'),
+  A('BEL', '056', 'be', 'Belgium', 'Bart De Wever', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 690, 11.9, [4.35, 50.85], 'dutch'),
+  A('CHE', '756', 'ch', 'Switzerland', null, 'President of the Confederation', 'dem', 'west', [], 950, 9, [7.45, 46.95], 'german'),
+  A('AUT', '040', 'at', 'Austria', 'Christian Stocker', 'Chancellor', 'dem', 'west', ['EU'], 530, 9.2, [16.37, 48.21], 'german'),
+  A('SWE', '752', 'se', 'Sweden', 'Ulf Kristersson', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 650, 10.6, [18.07, 59.33], 'nordic'),
+  A('NOR', '578', 'no', 'Norway', 'Jonas Gahr Støre', 'Prime Minister', 'dem', 'west', ['NATO'], 500, 5.6, [10.75, 59.91], 'nordic'),
+  A('DNK', '208', 'dk', 'Denmark', 'Mette Frederiksen', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 430, 6, [12.57, 55.68], 'nordic'),
+  A('FIN', '246', 'fi', 'Finland', 'Petteri Orpo', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 310, 5.6, [24.94, 60.17], 'nordic'),
+  A('POL', '616', 'pl', 'Poland', 'Donald Tusk', 'Prime Minister', 'dem', 'west', ['EU', 'NATO', 'G20'], 980, 37.4, [21.01, 52.23], 'slavic'),
+  A('CZE', '203', 'cz', 'Czechia', 'Andrej Babiš', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 360, 10.9, [14.42, 50.08], 'slavic'),
+  A('SVK', '703', 'sk', 'Slovakia', 'Robert Fico', 'Prime Minister', 'hybrid', 'west', ['EU', 'NATO'], 140, 5.4, [17.11, 48.15], 'slavic'),
+  A('HUN', '348', 'hu', 'Hungary', 'Péter Magyar', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 230, 9.55, [19.04, 47.5], 'hungarian'),
+  A('ROU', '642', 'ro', 'Romania', 'Nicușor Dan', 'President', 'dem', 'west', ['EU', 'NATO'], 400, 19, [26.1, 44.43], 'latin'),
+  A('GRC', '300', 'gr', 'Greece', 'Kyriakos Mitsotakis', 'Prime Minister', 'dem', 'west', ['EU', 'NATO'], 260, 10.4, [23.73, 37.98], 'greek'),
+  A('SRB', '688', 'rs', 'Serbia', 'Aleksandar Vučić', 'President', 'hybrid', 'nonaligned', [], 90, 6.6, [20.46, 44.79], 'slavic'),
+  A('UKR', '804', 'ua', 'Ukraine', 'Volodymyr Zelenskyy', 'President', 'dem', 'west', [], 200, 37, [30.52, 50.45], 'slavic'),
+  A('BLR', '112', 'by', 'Belarus', 'Alexander Lukashenko', 'President', 'auto', 'east', [], 75, 9.1, [27.56, 53.9], 'slavic'),
+  A('RUS', '643', 'ru', 'Russia', 'Vladimir Putin', 'President', 'auto', 'east', ['BRICS', 'G20'], 2100, 144, [37.62, 55.75], 'slavic'),
+  A('TUR', '792', 'tr', 'Türkiye', 'Recep Tayyip Erdoğan', 'President', 'hybrid', 'nonaligned', ['NATO', 'G20'], 1400, 86, [32.85, 39.93], 'turkish'),
+  A('ISR', '376', 'il', 'Israel', 'Benjamin Netanyahu', 'Prime Minister', 'dem', 'west', [], 560, 10, [35.21, 31.77], 'hebrew'),
+  A('IRN', '364', 'ir', 'Iran', null, 'Supreme Leader', 'auto', 'east', ['BRICS'], 400, 91, [51.39, 35.69], 'persian'),
+  A('SAU', '682', 'sa', 'Saudi Arabia', 'Mohammed bin Salman', 'Crown Prince', 'auto', 'nonaligned', ['G20'], 1100, 35, [46.68, 24.71], 'arabic'),
+  A('ARE', '784', 'ae', 'United Arab Emirates', 'Mohamed bin Zayed', 'President', 'auto', 'nonaligned', ['BRICS'], 560, 10, [54.37, 24.45], 'arabic'),
+  A('QAT', '634', 'qa', 'Qatar', 'Tamim bin Hamad Al Thani', 'Emir', 'auto', 'nonaligned', [], 220, 3, [51.53, 25.29], 'arabic'),
+  A('EGY', '818', 'eg', 'Egypt', 'Abdel Fattah el-Sisi', 'President', 'auto', 'nonaligned', ['BRICS'], 350, 116, [31.24, 30.04], 'arabic'),
+  A('IRQ', '368', 'iq', 'Iraq', null, 'Prime Minister', 'hybrid', 'nonaligned', [], 260, 46, [44.36, 33.31], 'arabic'),
+  A('MAR', '504', 'ma', 'Morocco', 'Mohammed VI', 'King', 'hybrid', 'west', [], 160, 37.5, [-6.84, 34.02], 'arabic'),
+  A('DZA', '012', 'dz', 'Algeria', 'Abdelmadjid Tebboune', 'President', 'auto', 'nonaligned', [], 270, 47, [3.06, 36.75], 'arabic'),
+  A('NGA', '566', 'ng', 'Nigeria', 'Bola Tinubu', 'President', 'hybrid', 'nonaligned', [], 250, 230, [7.49, 9.06], 'westafrican'),
+  A('ZAF', '710', 'za', 'South Africa', 'Cyril Ramaphosa', 'President', 'dem', 'nonaligned', ['G20', 'BRICS'], 420, 63, [28.19, -25.75], 'southafrican'),
+  A('KEN', '404', 'ke', 'Kenya', 'William Ruto', 'President', 'hybrid', 'nonaligned', [], 130, 56, [36.82, -1.29], 'eastafrican'),
+  A('ETH', '231', 'et', 'Ethiopia', 'Abiy Ahmed', 'Prime Minister', 'auto', 'nonaligned', ['BRICS'], 120, 130, [38.74, 9.03], 'eastafrican'),
+  A('IND', '356', 'in', 'India', 'Narendra Modi', 'Prime Minister', 'dem', 'nonaligned', ['G20', 'BRICS'], 4200, 1460, [77.21, 28.61], 'indian'),
+  A('PAK', '586', 'pk', 'Pakistan', 'Shehbaz Sharif', 'Prime Minister', 'hybrid', 'nonaligned', [], 380, 250, [73.05, 33.68], 'urdu'),
+  A('BGD', '050', 'bd', 'Bangladesh', null, 'Prime Minister', 'hybrid', 'nonaligned', [], 480, 175, [90.41, 23.81], 'bengali'),
+  A('CHN', '156', 'cn', 'China', 'Xi Jinping', 'President', 'auto', 'east', ['BRICS', 'G20'], 19400, 1408, [116.4, 39.9], 'chinese'),
+  A('TWN', '158', 'tw', 'Taiwan', 'Lai Ching-te', 'President', 'dem', 'west', [], 850, 23.4, [121.56, 25.03], 'chinese'),
+  A('JPN', '392', 'jp', 'Japan', 'Sanae Takaichi', 'Prime Minister', 'dem', 'west', ['G7', 'G20'], 4200, 123.5, [139.69, 35.69], 'japanese'),
+  A('KOR', '410', 'kr', 'South Korea', 'Lee Jae-myung', 'President', 'dem', 'west', ['G20'], 1850, 51.7, [126.98, 37.57], 'korean'),
+  A('PRK', '408', 'kp', 'North Korea', 'Kim Jong Un', 'Supreme Leader', 'auto', 'east', [], 30, 26, [125.75, 39.03], 'korean'),
+  A('IDN', '360', 'id', 'Indonesia', 'Prabowo Subianto', 'President', 'dem', 'nonaligned', ['G20', 'BRICS'], 1450, 283, [106.85, -6.21], 'indonesian'),
+  A('VNM', '704', 'vn', 'Vietnam', 'Tô Lâm', 'General Secretary', 'auto', 'nonaligned', [], 490, 101, [105.85, 21.03], 'vietnamese'),
+  A('THA', '764', 'th', 'Thailand', null, 'Prime Minister', 'hybrid', 'nonaligned', [], 550, 71, [100.5, 13.76], 'thai'),
+  A('PHL', '608', 'ph', 'Philippines', 'Ferdinand Marcos Jr.', 'President', 'dem', 'west', [], 500, 116, [120.98, 14.6], 'filipino'),
+  A('MYS', '458', 'my', 'Malaysia', 'Anwar Ibrahim', 'Prime Minister', 'dem', 'nonaligned', [], 450, 35, [101.69, 3.14], 'malay'),
+  A('SGP', '702', 'sg', 'Singapore', 'Lawrence Wong', 'Prime Minister', 'hybrid', 'nonaligned', [], 560, 6, [103.82, 1.35], 'chinese'),
+  A('AUS', '036', 'au', 'Australia', 'Anthony Albanese', 'Prime Minister', 'dem', 'west', ['G20'], 1800, 27.5, [149.13, -35.28], 'anglo'),
+  A('NZL', '554', 'nz', 'New Zealand', 'Christopher Luxon', 'Prime Minister', 'dem', 'west', [], 260, 5.3, [174.78, -41.29], 'anglo'),
+  A('KAZ', '398', 'kz', 'Kazakhstan', 'Kassym-Jomart Tokayev', 'President', 'auto', 'nonaligned', [], 290, 20.5, [71.43, 51.13], 'turkic'),
+];
+
+export const ACTOR_MAP = Object.fromEntries(ACTORS.map((a) => [a.id, a]));
+export const ACTOR_BY_NUM = Object.fromEntries(ACTORS.map((a) => [a.num, a]));
+
+// Pairwise history that a fresh relations model would miss. Symmetric.
+export const SPECIAL_RELATIONS = [
+  ['KOR', 'PRK', -70], ['IND', 'PAK', -55], ['IND', 'CHN', -20], ['USA', 'CHN', -25], ['USA', 'RUS', -20],
+  ['JPN', 'CHN', -25], ['TWN', 'CHN', -60], ['UKR', 'RUS', -90], ['POL', 'RUS', -50], ['ISR', 'IRN', -90],
+  ['USA', 'IRN', -60], ['SAU', 'IRN', -25], ['GRC', 'TUR', -15], ['ARG', 'GBR', -20], ['USA', 'VEN', -50],
+  ['HUN', 'RUS', 10], ['SRB', 'RUS', 30], ['TUR', 'RUS', 20], ['IND', 'RUS', 30], ['CHN', 'RUS', 40],
+  ['USA', 'ISR', 40], ['USA', 'GBR', 25], ['USA', 'CAN', -5], ['USA', 'MEX', 5], ['JPN', 'KOR', 10],
+  ['DEU', 'FRA', 20], ['AUS', 'NZL', 30], ['CAN', 'GBR', 20], ['ZAF', 'RUS', 15], ['BRA', 'CHN', 15],
+  ['FRA', 'DZA', -20], ['MAR', 'DZA', -40], ['EGY', 'ETH', -30], ['CHN', 'PHL', -35], ['VNM', 'CHN', -15],
+  ['FIN', 'RUS', -45], ['SWE', 'RUS', -40], ['NOR', 'RUS', -30], ['DNK', 'RUS', -35], ['GBR', 'RUS', -45],
+  ['BLR', 'RUS', 60], ['PRK', 'RUS', 40], ['PRK', 'CHN', 40], ['IRN', 'RUS', 30], ['UKR', 'BLR', -60],
+];

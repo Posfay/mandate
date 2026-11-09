@@ -1,0 +1,28 @@
+{
+  "name": "mandate",
+  "private": true,
+  "version": "0.1.0",
+  "description": "MANDATE — a political simulation where you govern a real nation.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:single": "vite build --mode single",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/bodoni-moda": "^5.3.0",
+    "@fontsource-variable/public-sans": "^5.3.0",
+    "d3-geo": "^3.1.2",
+    "flag-icons": "^7.6.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.1",
+    "vite": "^8.3.6",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}
