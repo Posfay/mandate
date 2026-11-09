@@ -9,6 +9,10 @@ and you can watch them move.
 
 ## Play
 
+**Play online: https://posfay.github.io/mandate/**
+
+Or run it locally:
+
 ```bash
 npm install
 ```
